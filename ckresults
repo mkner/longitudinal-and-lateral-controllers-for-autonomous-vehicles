@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+
+python evalrun.py racetrack_waypoints.txt ./controller_output/trajectory_data.txt
+

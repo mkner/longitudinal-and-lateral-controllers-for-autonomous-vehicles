@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+
+# run this shell script from carla install root directory
+
+./CarlaUE4.sh /Game/Maps/RaceTrack -windowed -carla-server -benchmark -fps=20 ​​-ResX=640 -ResY=480​ 
+
+#./CarlaUE4.sh /Game/Maps/RaceTrack -windowed -carla-server -benchmark -fps=30 ​-quality-level=Low -ResX=640 -ResY=480​ 
+
+
