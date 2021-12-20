@@ -55,7 +55,7 @@ from carla.tcp        import TCPConnectionError
 from carla.controller import utils
 
 
-SAVE_TRAJECTORY=True# no silver platter
+SAVE_TRAJECTORY=False# no silver platter
 
 print()
 print("Starting up controller client version "+str(MOD_VERSION)+"...")
