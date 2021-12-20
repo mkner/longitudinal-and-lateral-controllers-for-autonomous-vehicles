@@ -1,0 +1,36 @@
+#!/usr/bin/bash
+
+#mk
+#v0.01
+#
+
+# run to scroll down before prompt
+# to then start recording
+
+echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+echo;echo;echo;echo;echo
+echo;echo
+
+
+echo
+echo "Launching simulation..."
+echo
+
+read -p "Press any key to start... " -n1 -s
+#not work export PYGAME_HIDE_SUPPORT_PROMPT=1, changed pygame code
+
+python controller_client.py
+
+echo
+echo "Finished Test Run...."
+echo
+#echo "Saving runtime data for analysis..."
+echo
+
+#./ckresults
+
+echo
+read -p "Press any key to continue... " -n1 -s
+echo
+ 
