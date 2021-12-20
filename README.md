@@ -1,7 +1,7 @@
 
 # Longitudinal and lateral controllers for autonomous vehicles
 
-###Features PID and enhanced Stanley controllers
+### Features PID and enhanced Stanley controllers
 ### Implementation runs on the CARLA simulator
 
 
