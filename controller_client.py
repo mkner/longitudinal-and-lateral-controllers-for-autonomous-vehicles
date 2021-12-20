@@ -55,7 +55,7 @@ from carla.tcp        import TCPConnectionError
 from carla.controller import utils
 
 
-SAVE_TRAJECTORY=False# no silver platter
+
 
 print()
 print("Starting up controller client version "+str(MOD_VERSION)+"...")
@@ -1018,9 +1018,8 @@ def exec_waypoint_nav_demo(args):
         # save runtime pose, etc results
         #############################################
 
-        if ( SAVE_TRAJECTORY == True):
+      
             
-            write_trajectory_file(x_history, y_history, velocity_history, time_history)
             
             #mk
             #print("-----------------------------------")
