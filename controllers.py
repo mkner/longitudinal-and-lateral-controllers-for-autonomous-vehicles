@@ -605,13 +605,13 @@ class Controller2d(object):
         print("  yaw: ",  str(int(np.rad2deg(yaw)))+" (deg) ") #+str(round(yaw,2)) + " (rad)  "  ) 
         #print("  path angle: ",str(np.round(np.rad2deg(path_angle),2))+" (deg)")
         print("  path angle: ",str(int(np.rad2deg(path_angle)))+" (deg)")
-        print()
+        #print()
     
         #print("crosstrack angle (deg): ",str(np.round(np.rad2deg(ct_angle),2))+"") 
         #print("path to ct angle (deg): ",str(np.round(np.rad2deg(path2crosstrack_angle),2))+"")
         
         # right justify readout
-        print(f"{'  crosstrack angle:':<15}{np.round(np.rad2deg(ct_angle),2):>10}"+" (deg)")
+        #print(f"{'  crosstrack angle:':<15}{np.round(np.rad2deg(ct_angle),2):>10}"+" (deg)")
         #print(f"{'path to ct angle (deg):':<15}{np.round(np.rad2deg(ct_angle),2):>10}")
         print()
         
