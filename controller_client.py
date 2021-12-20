@@ -55,7 +55,7 @@ from carla.tcp        import TCPConnectionError
 from carla.controller import utils
 
 
-
+SAVE_TRAJECTORY=False# no silver platter
 
 print()
 print("Starting up controller client version "+str(MOD_VERSION)+"...")
@@ -101,7 +101,7 @@ PLAYER_START_INDEX = 1      # spawn index for player (keep to 1)
 WAYPOINTS_FILENAME = 'racetrack_waypoints.txt'  # waypoint file to load
 #DIST_THRESHOLD_TO_LAST_WAYPOINT = 2.0  # some distance from last position before
                                        # simulation ends                           
-DIST_THRESHOLD_TO_LAST_WAYPOINT = 3.0                           
+DIST_THRESHOLD_TO_LAST_WAYPOINT = 10.0                      
 
 #INTERP_MAX_POINTS_PLOT
 
@@ -505,8 +505,9 @@ def exec_waypoint_nav_demo(args):
         SIMULATION_TIME_STEP = sim_duration / float(num_iterations)
         
         # show this?
+        apx_ts  = round(SIMULATION_TIME_STEP,3)
         print("Apx simulation timestep: " + \
-              str(SIMULATION_TIME_STEP))
+              str(apx_ts))
             
         TOTAL_EPISODE_FRAMES = \
           int((TOTAL_RUN_TIME + WAIT_TIME_BEFORE_START)\
@@ -996,7 +997,7 @@ def exec_waypoint_nav_demo(args):
                 store_trajectory_plot(brake_fig.fig, 'brake.png')
                 
             if show_runtime_steering:
-                store_trajectory_plot(steer_fig.fig, 'steer.png')
+                store_trajectory_plot(steer_fig.fig, 'steering.png')
                 
             if show_runtime_cte:
                 store_trajectory_plot(cte_fig.fig, 'cte.png')
@@ -1018,8 +1019,9 @@ def exec_waypoint_nav_demo(args):
         # save runtime pose, etc results
         #############################################
 
-      
+        if ( SAVE_TRAJECTORY == True):
             
+            write_trajectory_file(x_history, y_history, velocity_history, time_history)
             
             #mk
             #print("-----------------------------------")
