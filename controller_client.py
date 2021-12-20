@@ -14,7 +14,7 @@ from __future__ import print_function
 from __future__ import division
 
 
-MOD_VERSION=8.12 #8.12 path_generator works
+MOD_VERSION=8.12 
 
 # System level imports
 import sys
