@@ -502,7 +502,7 @@ class Controller2d(object):
         else:
              crp=rrp # in reverse, use back axle for "front" end
         
-        # *HERE HERE HERE!!!!!
+       
         #crp = frp
         
         # get the higher resolution waypoint data stream and use
