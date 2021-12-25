@@ -4,7 +4,8 @@
 #mk
 #
 
-CONTROLLER_VERSION="0.42"
+
+CONTROLLER_VERSION="0.45"
 
 
 #controller class for lateral & longitudinal controllers
@@ -56,6 +57,7 @@ class Controller2d(object):
         #mk new 0.42
         self._set_reverse        = False
         self._waypoints          = waypoints
+        ##self._prev_waypoints     = self._waypoints
         self._conv_rad_to_steer  = 180.0 / 70.0 / np.pi
         self._pi                 = np.pi
         self._2pi                = 2.0 * np.pi
@@ -94,6 +96,7 @@ class Controller2d(object):
         self._desired_speed = desired_speed
 
     def update_waypoints(self, new_waypoints):
+        self._prev_waypoints = self._waypoints #mk v0.43
         self._waypoints = new_waypoints
         
         # this returns stuff to send to simulator
@@ -240,9 +243,8 @@ class Controller2d(object):
         self.vars.create('delta_data',deque()) # steering angle
         # new vers v0.34
         self.vars.create('ct_error_avg_data',deque()) # running avg crosstrack
-    
-
-        # ok to run main control loop??
+   
+        # if ok to run main control loop
         
         # Skip the first frame to store previous values properly
         if self._start_control_loop:
@@ -293,23 +295,161 @@ class Controller2d(object):
             """
         
         #########################################
-        
-        
+
         # get current waypoint finer resolution representation
         
         # (x,y,v) waypoints with velocity attribute only
         
+        # wp_prev=wp
+        
         wpv=np.array(waypoints) #make an array [n x 3], thanks
         
         wp=wpv[:,:2] #(x,y) waypoints only
-
+        
         cg=np.array([x,y]) # for realtime position
         
         velocity=v
         
         # test over throttled *here ###
+        # test stuck over-throttle and no brakes
+        # at 60% over car flips over and gets back on track
+        # 500% is great, rolls around then gets back withing about 20cm
+        # 1.65 rolls around and recovers
+        # 1.75 wayy past, flips over and spins it wheels, dosnt right side up again
+        #v_desired=v_desired*1.75
         
         v_desired=v_desired#*5#1.60#*1.25#*2.5#1.75 #*1.60 # *5 #*2.5  #*2#1.60#*1.25#1.60# 1.90#1.50
+        
+        
+        ## ablib test patterns
+        
+        #test braking & reverse
+     
+        # TESTING HERE 
+        
+        ## backs up then goes forward ok
+        # goes into reverse but stop first
+        
+        
+        # halt, reverse, recover routine
+        # over throttled 75%
+        # speeds ahead way past end of planned trajectory
+        # hits fence, bounces off, then turns around and 
+        #gets back with to end of path with a crosstrack error of 16 cm
+        # handles an avg crosstrack error of 11.84 m
+        # just keeps recovering and trying to get back on path
+        
+        
+        """
+        v_desired = 1.75*v_desired
+        
+        
+        if (self.vars.i >= 550 and self.vars.i < 625):
+            v_desired=0 
+        
+        #mk v0.42
+        # test reverse,
+        # since waypoints are still out in front!
+        if (self.vars.i >= 625 and self.vars.i < 700):
+            v_desired = -v_desired
+            
+         # then will have to catch up to get to waypoints missed?
+        if (self.vars.i >= 700 and self.vars.i < 720):
+            v_desired=0 
+            
+        if (self.vars.i >= 720 and self.vars.i < 750):
+            v_desired=1.25*v_desired # gas it 
+            
+        
+        if (self.vars.i >= 720 and self.vars.i < 750):
+            v_desired=3.0*v_desired # gas it 
+        
+        """
+        """
+        # test # 003
+        # halt, reverse, recover routine
+        # over throttled 75%
+        # speeds ahead way past end of planned trajectory
+        # hits fence, bounces off, then turns around and 
+        #gets back with to end of path with a crosstrack error of 16 cm
+        
+        v_desired = 1.75*v_desired
+        
+        if (self.vars.i >= 550 and self.vars.i < 625):
+            v_desired=0 
+        
+        #mk v0.42
+        # test reverse,
+        # since waypoints are still out in front!
+        if (self.vars.i >= 625 and self.vars.i < 700):
+            v_desired = -v_desired
+            
+         # then will have to catch up to get to waypoints missed?
+        if (self.vars.i >= 700 and self.vars.i < 720):
+            v_desired=0 
+            
+        if (self.vars.i >= 720 and self.vars.i < 750):
+            v_desired=1.25*v_desired # gas it 
+            
+        
+        if (self.vars.i >= 720 and self.vars.i < 750):
+            v_desired=3.0*v_desired # gas it 
+        """
+        
+        """
+        # nice forward, backup and turnaound
+        # back on road
+        v_desired = 1.5*v_desired
+        
+        if (self.vars.i >= 550 and self.vars.i < 625):
+            v_desired=0 
+        
+        #mk v0.42
+        # test reverse,
+        # since waypoints are still out in front!
+        if (self.vars.i >= 625 and self.vars.i < 700):
+            v_desired = -v_desired
+            
+         # then will have to catch up to get to waypoints missed?
+        if (self.vars.i >= 700 and self.vars.i < 720):
+            v_desired=0 
+            
+        if (self.vars.i >= 720 and self.vars.i < 750):
+            v_desired=1.25*v_desired # gas it 
+            
+        
+        if (self.vars.i >= 720 and self.vars.i < 750):
+            v_desired=3.0*v_desired # gas it 
+        """
+        
+
+        """
+        ## backs up then goes forward ok
+        # goes into reverse but stop first
+        
+        if (self.vars.i >= 550 and self.vars.i < 625):
+            v_desired=0 
+        
+        #mk v0.42
+        # test reverse,
+        # since waypoints are still out in front!
+        if (self.vars.i >= 625 and self.vars.i < 700):
+            v_desired = -v_desired
+        """    
+    
+        
+        """
+        ## backs up into fence, then goes forward ok
+        # goes into reverse without stopping first
+        if (self.vars.i >= 500 and self.vars.i < 800):
+            v_desired=0 
+        
+        #mk v0.42
+        # test reverse, but will try to spin around
+        # since waypoints are still out in front!
+        if (self.vars.i >= 900 and self.vars.i < 1000):
+            v_desired = -v_desired
+        """
         
       
         # begin terminal readouts
@@ -489,9 +629,7 @@ class Controller2d(object):
         frp=np.array([cg[0]+lf*np.cos(yaw),cg[1]+lf*np.sin(yaw)])
         # rear ref point coord
         rrp=np.array([cg[0]-lr*np.cos(yaw),cg[1]-lr*np.sin(yaw)])
-        
-        #mk 0.42
-        
+              
         # set current reference point for vehicle
         
         #mk this is ok
@@ -502,7 +640,7 @@ class Controller2d(object):
         else:
              crp=rrp # in reverse, use back axle for "front" end
         
-       
+        # 
         #crp = frp
         
         # get the higher resolution waypoint data stream and use
@@ -510,15 +648,13 @@ class Controller2d(object):
         # into the path plan in case there is lag time or 1st waypoint
         # in stream behind vehicle, with this project you never know
         
-        #mk TRY THIS!!!
-        #j=0
-        #j=20
-        #j=25 # 10 is ~ 1 meter 25 is 2.5 meters
+ 
         #j=5
-        j=5
+        #j=4
+        j=2
         
         lookahead_points=wp[j:-1] # datastream can shrink at end of run
-       
+        
         # get distance to neareast waypoint from current reference point
         
         lookahead_distances=np.sqrt( (lookahead_points[:,0]-crp[0])**2 \
@@ -527,9 +663,7 @@ class Controller2d(object):
         # get nearest waypoint
         nwp = lookahead_points[np.argmin(lookahead_distances)] 
         
-        
-        # OR THIS
-        #ct_error = np.min(lookahead_distances)
+        #ct_error = np.min(lookahead_distances)?
        
         # get crosstrack error & angle
         ct_vector = crp - nwp # crosstrack vector from car nearest path point
@@ -539,9 +673,10 @@ class Controller2d(object):
    
         lp=lookahead_points #shorthand
         
-        path_angle = np.arctan2(lp[len(lp)//4][1]-crp[1],lp[len(lp)//4][0]-crp[0])
-        
+        #this can be adjusted 
+        #how far out ahead from crp to get vectors for path angle calc
         #path_angle = np.arctan2(wp[len(wp)//2][1]-crp[1],wp[len(wp)//2][0]-crp[0])
+        path_angle = np.arctan2(lp[len(lp)//4][1]-crp[1],lp[len(lp)//4][0]-crp[0])
         
         # which side of path are we on to determine steering change direction
         path2crosstrack_angle = path_angle - ct_angle
@@ -554,9 +689,8 @@ class Controller2d(object):
         # this depends on the the tuning of the controller equations
         # and the simulation, can be adjusted 
         
-        #p2c_angle_bound = np.deg2rad(4) #  +/- degrees about zero 
-        
-        p2c_angle_bound = np.deg2rad(3) #  +/- degrees about zero 
+        p2c_angle_bound = np.deg2rad(4) #  +/- degrees about zero 
+        #p2c_angle_bound = np.deg2rad(2) #  +/- degrees about zero 
         
         if (path2crosstrack_angle) > p2c_angle_bound:
              direction = -1
@@ -569,9 +703,12 @@ class Controller2d(object):
         psi = path_angle - yaw
         psi = np.arctan2(np.sin(psi),np.cos(psi)) # bound check in [-pi,pi]
          
-        # experimental
+        # experimental dynamic Kv
+        # Kv is NOT fixed to a constant from field test results 
         # set Kv dynamically as function of velocity history
-        # Kv min is minumum speed to reach before avgerages kick in
+        # but Kv_min is a fixed constant that is used at slower speeds
+        # until a minumum speed to reach before averages take over
+        
         # for extreme conditions where throttle stuck and out of control
         # for instance to see how can get enough reaction out of 
         # the controller
@@ -581,10 +718,12 @@ class Controller2d(object):
         Kv = max( Kv_min, np.average(self.vars.v_actuals) )
         #Kv = min( Kv_min, np.average(self.vars.v_actuals) )
         
-        Kps=0.05 # stanley proptional gain determined from field test
-       # Kps = 0.10
-        #Kps=1
-        cte_term = direction * np.arctan((Kps * ct_error) / (Kv+velocity)) 
+        #mk *HERE
+        Kps=0.05
+        #Kps=0.05 # stanley proptional gain determined from field test
+        # Kps = 0.10
+        #Kps=2
+        cte_term = direction * np.arctan((Kps * ct_error) / Kv) #not use  + velocity) 
        
         if direction==0:# keep steady on course
             delta=self.vars.delta_prev
@@ -605,7 +744,7 @@ class Controller2d(object):
         print("  yaw: ",  str(int(np.rad2deg(yaw)))+" (deg) ") #+str(round(yaw,2)) + " (rad)  "  ) 
         #print("  path angle: ",str(np.round(np.rad2deg(path_angle),2))+" (deg)")
         print("  path angle: ",str(int(np.rad2deg(path_angle)))+" (deg)")
-        #print()
+        print()
     
         #print("crosstrack angle (deg): ",str(np.round(np.rad2deg(ct_angle),2))+"") 
         #print("path to ct angle (deg): ",str(np.round(np.rad2deg(path2crosstrack_angle),2))+"")
@@ -613,7 +752,7 @@ class Controller2d(object):
         # right justify readout
         #print(f"{'  crosstrack angle:':<15}{np.round(np.rad2deg(ct_angle),2):>10}"+" (deg)")
         #print(f"{'path to ct angle (deg):':<15}{np.round(np.rad2deg(ct_angle),2):>10}")
-        print()
+        #print()
         
         #print("velocity ",'{0:3.2f} '.format(v)+ " ("+str(int(v*3.6))+") kmph"\
         #      "  ("+str(int(v*2.237))+") mph") 
@@ -629,8 +768,9 @@ class Controller2d(object):
             side= "  >> CENTER <<" # if within bounds for stable steering
         else:
             side="" #who knows - catch bizarre numerical error?!
-            
-        print("  crosstrack error: "+ str(round(ct_error,2)) + " "+side )
+        
+        
+        print("  crosstrack error: "+ str(round(ct_error,3)) + " "+side )
         print()
          
         
@@ -661,12 +801,15 @@ class Controller2d(object):
         
         
         
-        print("  avg crosstrack error: " + str(round(ct_error_avg,2)))
+        #print("  avg crosstrack error: " + str(round(ct_error_avg,2)))
+        print("  cte average: " + str(round(ct_error_avg,2)))
+        
         
         print()
         print("  delta: " + str(int(np.round(np.rad2deg(delta))))+" (deg)" + \
               "   psi: " + str(int(np.round(np.rad2deg(psi))))+" (deg)" + \
               "   cte term: " + str(  np.round(cte_term) ) +" (deg)")#))
+        print()
         print()
         
         #######################################
