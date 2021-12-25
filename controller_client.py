@@ -2,7 +2,7 @@
 
 #
 #mk 
-#v8.12
+#v8.14
 #
 # controller_client for carla simulator
 
@@ -14,7 +14,7 @@ from __future__ import print_function
 from __future__ import division
 
 
-MOD_VERSION=8.12 
+MOD_VERSION="8.14"
 
 # System level imports
 import sys
@@ -54,8 +54,8 @@ from carla.settings   import CarlaSettings
 from carla.tcp        import TCPConnectionError
 from carla.controller import utils
 
-
-SAVE_TRAJECTORY=False# no silver platter
+SAVE_ANALYSIS = True
+SAVE_TRAJECTORY=False
 
 print()
 print("Starting up controller client version "+str(MOD_VERSION)+"...")
@@ -103,16 +103,10 @@ WAYPOINTS_FILENAME = 'racetrack_waypoints.txt'  # waypoint file to load
                                        # simulation ends                           
 DIST_THRESHOLD_TO_LAST_WAYPOINT = 10.0                      
 
-#INTERP_MAX_POINTS_PLOT
 
-INTERP_MAX_POINTS_PLOT    = 7 # number of waypoints used for displaying
+
+INTERP_MAX_POINTS_PLOT    = 5 # number of waypoints used for displaying
  
-#now parameter to path generator                                            
-#INTERP_LOOKAHEAD_DISTANCE = 20   # incomming stream lookahead in meters
-
-#now parameter to path generator
-#INTERP_DISTANCE_RES       = 0.01 # distance between interpolated points
-
 # controller output directory
 RUNTIME_OUTPUT_FOLDER = os.path.dirname(os.path.realpath(__file__)) +\
                          '/runtime_output' #/controller_output/'
@@ -121,23 +115,9 @@ RUNTIME_OUTPUT_FOLDER = os.path.dirname(os.path.realpath(__file__)) +\
 #RUNTIME_OUTPUT_FOLDER = os.path.dirname(os.path.realpath(__file__)) +\
 #                          '\\controller_output\\'
 
-##### TESTING MK ############
-
-
-#path_generator = path_generator.Path_generator(WAYPOINTS_FILENAME)
-#  OR local_planner.path_generator(...)
-
-# local planer
-# make a path high resolution waypoint generator
-
+# create the path generator object from local planner
 path_generator = local_planner.Path_generator(WAYPOINTS_FILENAME, \
                                               resolution=0.01)
-#path_generator.set_lookahead_distance(10)#7)
-path_generator.set_lookahead_distance(7)
-
-##path_generator.set_resolution(0.01) # not implemented
-
-#############################
 
 
 def make_carla_settings(args):
@@ -445,15 +425,16 @@ def exec_waypoint_nav_demo(args):
         #mk ok 
         waypoints = None
         waypoints = path_generator.get_all_waypoints() #in init WAYPOINTS_FILENAME)
-        
-     
+
+        #mk aok
+        #waypoints = waypoints_np # TESTING NEED FOR FOR DISPLAY PANEL CODE
         #mk aok
         #wp_distances = path_generator.get_wp_distances()
-        #mk ok
-        #wp_interp = path_generator.get_wp_interp() #wp_inter
+        #mk 
+        #wp_interp = path_generator.get_wp_interp() 
         #mk AOK 
         #wp_interp_hash = [] 
-        #wp_interp_hash = path_generator.get_wp_interp_hash() #.wp_interp_hash
+        #wp_interp_hash = path_generator.get_wp_interp_hash() 
         
         #############################################
         # Instantiate Controller Object  
@@ -725,8 +706,14 @@ def exec_waypoint_nav_demo(args):
         # start frame iteration loop
         #############################################
         
+        
         reached_the_end = False
         skip_first_frame = True
+        #################### TESTING PUT BACK IN ############################
+       # closest_index    = 0  # Index of waypoint that is currently closest to
+                              # the car (assumed to be the first index)
+       # closest_distance = 0  # Closest distance of closest waypoint to car
+        #####################################################################
         
         #mk which reference point is used for these buitlins?
         # note this assumes the closest is the 1st index at 0
@@ -739,7 +726,8 @@ def exec_waypoint_nav_demo(args):
         
         # iterate over frames until end of waypoints 
         # or TOTAL_EPISODE_FRAMES reached 
-        
+    
+       
         for frame in range(TOTAL_EPISODE_FRAMES):
             
             # update current pose, state,etc
@@ -775,17 +763,17 @@ def exec_waypoint_nav_demo(args):
             velocity_history.append(current_speed)
             time_history.append(current_timestamp) 
             
-            #mk ok
+            #mk aok
             # get a new incomming stream of higher res waypoints
-            new_waypoints = path_generator.get_new_waypoints( \
-              current_x, current_y)
+            new_waypoints = \
+                path_generator.get_new_waypoints(current_x, current_y)
              
             #print("=======================")
             #print("len new waypoints:",len(new_waypoints))
             
             # send the controller the interpolated waypoint stream 
             # along with the pose, velocity, runtime stamp, etc
-            
+
             controller.update_waypoints(new_waypoints)
 
             controller.update_values(current_x, current_y, current_yaw, 
@@ -853,7 +841,6 @@ def exec_waypoint_nav_demo(args):
                             current_v_avg =controller.vars.current_v_avg
                             current_v_err=controller.vars.current_v_err
                             
-                
                         # velocity
                         if show_runtime_velocity_track:
                             velocity_fig.roll("velocity", 
@@ -1035,8 +1022,8 @@ def exec_waypoint_nav_demo(args):
             # save other results for post-run analysis
             #############################################
             
+        if (SAVE_ANALYSIS == True):   
             controller.vars.dumped_analysis=True
-            
             controller.write_analysis_file()  
 
         
