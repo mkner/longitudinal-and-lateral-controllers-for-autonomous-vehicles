@@ -1,16 +1,13 @@
 #
+# local planner
 #mk
-#v0.06 ok
+#v0.08 
 #
 
 import numpy as np
 import numpy.linalg as nla
 
 import csv
-
-
-#self.interp_resolution       = 0.01 # distance between interpolated points
-#self.interp_lookahead_distance = 20   # incomming stream lookahead in meters
 
 
 class Path_generator(object):
@@ -50,66 +47,69 @@ class Path_generator(object):
         self.wp_distances = []
         
         self.interp_resolution  = 0.01 # distance between interpolated points
-        self.interp_lookahead_distance = 30#20 # incomming stream lookahead in meters
+        self.interp_lookahead_distance = 20 #20 # incomming stream lookahead in meters
         
-        if (resolution != None):
-            self._set_resolution(resolution)
-            
-        self._calc_interpolations() #one time only 
+        self._calc_interpolations() #one time only w/ resolution
         
-      
-    def _set_resolution(self, resolution):
-        self.interp_resolution = resolution
     
-    def set_lookahead_distance(self, lookahead):
+    def set_lookahead_distance(self, lookahead = None):
         self.interp_lookahead_distance = lookahead
-    
+        
+        
     def _calc_interpolations(self):
-        
-        # calculate the interpolitaed points
-        # and their hash table
-        
-        for i in range(1, self.waypoints.shape[0]):
-            
-            self.wp_distances.append(
-                    np.sqrt((self.waypoints[i, 0] - self.waypoints[i-1, 0])**2 +
-                            (self.waypoints[i, 1] - self.waypoints[i-1, 1])**2))
-        
-            self.wp_distances.append(0)  # last distance is 0 because it is the distance
-                                     # from the last waypoint to the last waypoint
 
-        # linearly interpolate between waypoints and store in a list
-        # along with their hash table
+        waypoints = self.waypoints
+        INTERP_DISTANCE_RES = self.interp_resolution
         
-        for i in range(self.waypoints.shape[0] - 1):
+        wp_distances = []   
+        
+        for i in range(1, waypoints.shape[0]):
+            wp_distances.append(
+                    np.sqrt((waypoints[i, 0] - waypoints[i-1, 0])**2 +
+                            (waypoints[i, 1] - waypoints[i-1, 1])**2))
+        wp_distances.append(0)  # last distance is 0 because it is the distance
+                                # from the last waypoint to the last waypoint
+        
+        # Linearly interpolate between waypoints and store in a list
+        # along with their hash table
+        wp_interp      = []    # interpolated values 
+                               # (rows = waypoints, columns = [x, y, v])
+        wp_interp_hash = []    # hash table which indexes waypoints
+                               # to the index of the waypoint in wp_interp
+        interp_counter = 0     # counter for current interpolated point index
+        
+        for i in range(waypoints.shape[0] - 1):
+            
             # add original waypoint to interpolated waypoints list 
-            # (and append it to the hash table)
-            self.wp_interp.append(list(self.waypoints[i]))
-            self.wp_interp_hash.append(self.interp_counter)   
-            self.interp_counter+=1
+            # and append it to the hash table
+            
+            wp_interp.append(list(waypoints[i]))
+            wp_interp_hash.append(interp_counter)   
+            interp_counter+=1
             
             # interpolate to the next waypoint & calc the number of
             # points to interpolate based on the specified resolution and
             # incrementally add interpolated points until the next waypoint
             # is about to be reached
             
-            num_pts_to_interp = int(np.floor(self.wp_distances[i] /\
-                                         float(self.interp_resolution)) - 1)
-            wp_vector = self.waypoints[i+1] - self.waypoints[i]
+            num_pts_to_interp = int(np.floor(wp_distances[i] /\
+                                         float(INTERP_DISTANCE_RES)) - 1)
+            wp_vector = waypoints[i+1] - waypoints[i]
             wp_uvector = wp_vector / np.linalg.norm(wp_vector)
-            
             for j in range(num_pts_to_interp):
-                next_wp_vector = self.interp_resolution * float(j+1) * wp_uvector
-                self.wp_interp.append(list(self.waypoints[i] + next_wp_vector))
-                self.interp_counter+=1
+                next_wp_vector = INTERP_DISTANCE_RES * float(j+1) * wp_uvector
+                wp_interp.append(list(waypoints[i] + next_wp_vector))
+                interp_counter+=1
                 
         # add last waypoint at the end
-        self.wp_interp.append(list(self.waypoints[-1]))
-        self.wp_interp_hash.append(self.interp_counter)  
-        self.interp_counter+=1
+        wp_interp.append(list(waypoints[-1]))
+        wp_interp_hash.append(interp_counter)   
+        interp_counter+=1
         
-        return
-    
+        self.wp_distances=wp_distances
+        self.wp_interp= wp_interp
+        self.wp_interp_hash = wp_interp_hash
+   
 
     def _calc_new_waypoints(self,cx,cy):
         
@@ -168,9 +168,9 @@ class Path_generator(object):
                 self.waypoints[self.new_index, 0] - current_x,
                 self.waypoints[self.new_index, 1] - current_y]))
 
-    # use closest index found to return the path that is one
-    # waypoint behind and some lookahead waypoints in front
-    # specified by a fixed lookahead distance 
+        # use closest index found to return the path that is one
+        # waypoint behind and some lookahead waypoints in front
+        # specified by a fixed lookahead distance 
 
         waypoint_subset_first_index = self.closest_index - 1
         
@@ -212,3 +212,4 @@ class Path_generator(object):
     def get_wp_interp_hash(self):
         return self.wp_interp_hash
  
+       
