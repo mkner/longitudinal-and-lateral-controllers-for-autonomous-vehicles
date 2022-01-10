@@ -11,7 +11,7 @@
 
 * Some video clips of test runs included
 
-### Previous - v0.44
+### v0.44
 
 - Better modularization of autonomous software system functions and capabilities
 
