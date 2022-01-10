@@ -7,6 +7,12 @@
 
 ## New in this release - v0.45
 
+* Formatting improved for console readouts
+
+* Some video clips of test runs included
+
+## Previous v0.44
+
 - Better modularization of autonomous software system functions and capabilities
 
 * Runtime display panels configuration options have been enhanced
@@ -20,10 +26,6 @@
 * Vertical or horizontal orientation of the panels an be specified for both controls and trajectory
 
 * If a particular runtime display panel type is not set in options config then defaults are used
-
-* Formatting improved for console readouts
-
-* Some video clips of test runs included
 
 
 
