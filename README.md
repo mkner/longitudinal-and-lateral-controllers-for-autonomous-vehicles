@@ -5,7 +5,7 @@
 ### Implementation runs on the CARLA simulator
 
 
-## New in this release - v0.45
+### New in this release - v0.45
 
 * Formatting improved for console readouts
 
