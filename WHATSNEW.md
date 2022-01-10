@@ -1,15 +1,20 @@
 
-## Longitudinal and lateral controllers for autonomous vehicles
+# Longitudinal and lateral controllers for autonomous vehicles
 
-### Features PID and enhanced Stanley controllers
+###Features PID and enhanced Stanley controllers
 ### Implementation runs on the CARLA simulator
 
 
 ### New in this release - v0.45
 
+* A negative velocity control signal triggers the vehicle to put itself into reverse and  
+the vehicle's CRP (Current Reference Point) for the Stanley lateral controller is set  
+to the RRP (Rear Reference Point) instead of the normal FRP (Front Reference Point).
+
 * Formatting improved for console readouts
 
 * Some video clips of test runs included
+
 
 ### v0.44
 
@@ -26,6 +31,10 @@
 * Vertical or horizontal orientation of the panels an be specified for both controls and trajectory
 
 * If a particular runtime display panel type is not set in options config then defaults are used
+
+
+
+
 
 
 
