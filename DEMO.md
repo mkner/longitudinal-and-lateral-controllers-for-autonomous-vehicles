@@ -3,7 +3,8 @@
 
 ## Reverse Test
 
-Negative velocity triggers reverse control signal.
+Negative velocity control signal triggers reverse.
+Zero puts on the brakes.
 
 
 ![rreverse test](rev_test.gif)
