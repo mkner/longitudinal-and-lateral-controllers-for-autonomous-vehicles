@@ -5,13 +5,13 @@
 ### Implementation runs on the CARLA simulator
 
 
-## New in this release - v0.45
+### New in this release - v0.45
 
 * Formatting improved for console readouts
 
 * Some video clips of test runs included
 
-## Previous v0.44
+### Previous v0.44
 
 - Better modularization of autonomous software system functions and capabilities
 
