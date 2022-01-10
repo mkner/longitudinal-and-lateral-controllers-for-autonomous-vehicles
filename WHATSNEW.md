@@ -23,8 +23,8 @@
 
 * Formatting improved for console readouts
 
-* A negative velocity control signal triggers the vehicle to put itself into reverse and
-  the vehicle's CRP (Current Reference Point) for the Stanley lateral controller is set to the RRP (Rear Reference Point) instead of the normal FRP (Front Reference Point).
+* Some video clips of test runs included
+
 
 
 
