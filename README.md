@@ -4,7 +4,7 @@
 ### Features PID and enhanced Stanley controllers
 ### Implementation runs on the CARLA simulator
 
-![rreverse test](demo/normrunpov20.gif)
+![run pov 30](demo/normrunpov30.gif)
 
 ### Whats new...
 
