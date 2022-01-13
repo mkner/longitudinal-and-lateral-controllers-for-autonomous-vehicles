@@ -19,3 +19,5 @@ where the signal is stuck 90% above where it should be. The modified Stanley
 controller does remarkable job at repeatedly getting back on course after swerving  
 around and at some points over 18 meters off path in lateral directions. Finishes  
 with a CTE of only  1.74 meters. It could have been worse! 
+
+![rreverse test](demo/vel90over.gif)
