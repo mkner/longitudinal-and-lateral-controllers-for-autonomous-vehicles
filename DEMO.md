@@ -9,8 +9,10 @@ Simulates a problem with the vehicle putting iteself into reverse when
 it was given a forward motion from the local planner. Tests ability of  
 the controllers to recover from suddenly being put into reverse while still   
 receiving the forward waypoint stream for position. The negative of  
-velocity control signal triggers reverse. A zero velocity signal puts on  
-the  brakes. Then the car puts itself back into forward gear.  
+velocity control signal triggers reverse. The Stanley controller uses  
+the RRP (Rear Reference Point) instead of the FRP (Front Reference Point)  
+when in reverse. A zero velocity signal puts on the  brakes.
+Then the car puts itself back into forward gear.  
 
 
 
