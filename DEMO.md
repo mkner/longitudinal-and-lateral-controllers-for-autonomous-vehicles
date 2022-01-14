@@ -5,9 +5,9 @@
 
 ### Reverse 
 
-Simulates a problem with the vehicle putting iteself into reverse when  
-it was given a forward motion from the local planner. Tests ability of  
-the controllers to recover from suddenly being put into reverse while still   
+Simulates a problem with the vehicle putting iteself into reverse even though  
+it was given forward motion from the local planner. Tests ability of the  
+controllers to recover from suddenly being put into reverse while still   
 receiving the forward waypoint stream for position. The negative of  
 velocity control signal triggers reverse. The Stanley controller uses  
 the RRP (Rear Reference Point) instead of the FRP (Front Reference Point)  
