@@ -3,10 +3,11 @@
 
 ## Reverse Test
 
-Tests recovery from suddenly put into reverse while still receiving waypoint
-stream forward uses forward speed in reverse gear.
-Negative velocity control signal triggers reverse.
-Zero puts on the brakes.
+Tests ability to recover from suddenly being put into reverse while still 
+receiving the forward waypoint stream for position and speed. The negative  
+velocity control signal triggers reverse. A zero velocity signal puts on the  
+brakes. Then the car puts itself back into forward gear.
+
 
 
 ![rreverse test](demo/rev_test.gif)
