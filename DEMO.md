@@ -3,6 +3,8 @@
 
 ## Reverse Test
 
+Tests recovery from suddenly put into reverse while still receiving waypoint
+stream forward uses forward speed in reverse gear.
 Negative velocity control signal triggers reverse.
 Zero puts on the brakes.
 
