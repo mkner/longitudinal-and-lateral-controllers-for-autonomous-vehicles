@@ -1,18 +1,18 @@
-
 ## Short Demo Clips
 
 ### Testing adverse and unexpected autonomous system problems
 
 ### Reverse 
 
-Simulates a problem with the vehicle putting iteself into reverse even though  
-it was given forward motion from the local planner. Tests ability of the  
-controllers to recover from suddenly being put into reverse while still   
-receiving the forward waypoint stream for position. The negative of  
-velocity control signal triggers reverse. The Stanley controller uses  
-the RRP (Rear Reference Point) instead of the FRP (Front Reference Point)  
-when in reverse. A zero velocity signal puts on the  brakes.
+Simulates a problem with the vehicle putting itself into reverse even though  
+it was given forward motion from the local planner. Tests ability of the controllers  
+to recover from suddenly being put into reverse while still receiving the forward  
+waypoint stream for position. The negative of velocity control signal triggers reverse.  
+The Stanley controller uses the RRP (Rear Reference Point) instead of the FRP  
+(Front Reference Point) when in reverse. A zero velocity signal puts on the brakes.  
 Then the car puts itself back into forward gear.  
+  
+
 
 
 
