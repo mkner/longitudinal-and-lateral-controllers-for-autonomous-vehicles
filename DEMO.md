@@ -21,7 +21,7 @@ the  brakes. Then the car puts itself back into forward gear.
 
 ### Target velocity 
 
-Simulates a failure with the desired velocity signal from the local planner,  
+Simulates a failure either with the desired velocity signal from the local planner,  
 or internal to the longitudinal controller (before the low-level control and acuators)  
 where the signal is stuck 90% above where it should be. The modified Stanley  
 controller does remarkable job at repeatedly getting back on course after swerving  
