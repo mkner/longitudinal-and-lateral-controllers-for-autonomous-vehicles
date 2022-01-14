@@ -1,9 +1,9 @@
 
 ## Short Demo Clips
 
-### Testing simulated unexpected problems with the autonomous hardware and software systems
+### Testing adverse and unexpected autonomous system problems
 
-## Reverse Test
+### Reverse 
 
 Simulates a problem with the vehicle putting iteself into reverse when  
 it was given a forward motion from the local planner. Tests ability of  
@@ -19,7 +19,7 @@ the  brakes. Then the car puts itself back into forward gear.
 
 
 
-## Worst Case Scenarios
+### Target velocity 
 
 Simulates a failure with the desired velocity signal from the local planner,  
 or internal to the longitudinal controller (before the low-level control and acuators)  
