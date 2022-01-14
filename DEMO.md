@@ -3,8 +3,10 @@
 
 ## Reverse Test
 
+Simulates a problem with the vehicle putting iteself into reverse when  
+it was given a forward motion from the local planner.  
 Tests ability to recover from suddenly being put into reverse while still   
-receiving the forward waypoint stream for position and speed. The negative  
+receiving the forward waypoint stream for position. The negative of 
 velocity control signal triggers reverse. A zero velocity signal puts on the  
 brakes. Then the car puts itself back into forward gear.  
 
