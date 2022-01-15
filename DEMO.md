@@ -4,7 +4,7 @@
 
 ### Reverse 
 
-Simulates a problem with the vehicle putting itself into reverse even though  
+Simulates the vehicle unexectedly putting itself into reverse even though  
 it was given forward motion from the local planner. Tests ability of the controllers  
 to recover from suddenly being put into reverse while still receiving the forward  
 waypoint stream for position. The negative of velocity control signal triggers reverse.  
