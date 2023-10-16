@@ -44,5 +44,6 @@ One quick check for accuracy is to compare realtime speed (kmph) in from the bui
 
 ![vtrack](runtime_output/v0.45/velocity_tracking.png) 
 ![cte](runtime_output/v0.45/cte.png) ![cteavg](runtime_output/v0.45/cte_avg.png)
+
 ![trajectory](runtime_output/v0.45/trajectory.png) 
 
