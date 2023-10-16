@@ -29,7 +29,7 @@
 
 ### Videos are finally being released!
 
-Full length video of the racetrack run with side panel runtime metric readouts is here:
+Full length video of the racetrack run with side panel runtime readouts is here:
 
 https://www.youtube.com/watch?v=4t0qOREr42g&t=4s
 
