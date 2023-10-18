@@ -53,3 +53,22 @@ One quick check for accuracy is to compare realtime speed (kmph) in from the bui
 
 ![trajectory](runtime_output/v0.45/trajectory.png) 
 
+
+Full length video of the racetrack run with side panel runtime readouts is here:
+
+https://www.youtube.com/watch?v=4t0qOREr42g&t=4s
+
+### Malfunction Test - Unplanned Reversed Motion
+
+In this demo, the car is using a longitudinal PID  controller and an enhanced Stanley design for the lateral controller. The original Stanley controller  was modified to improve performance based on field testing results from the simulator. The controller uses both runtime metrics and historical averages during the run on the track to dynamically adjust. 
+
+This test shows another "what if" scenario. It simulates that there is either an electro-mechanical, electronic or unknown system error that causes a malfunction in the actuators or there is an emergency override to the planned path with the same result.
+
+The idea is to see how well the controllers and vehicle handle and recover from this apparent malfunction, planned or not.
+
+This test run initiates a manual override to the incoming waypoint stream being received from the local planner. The runtime displays, both panel readouts and realtime graphic displays show the effect of a abrupt unplanned sequence of stop, reverse, stop and forward again, while attempting to following the path plan as usual with the controllers  still receiving and trying to respond the trajectory signals.
+
+See the video here: https://www.youtube.com/watch?v=pFygqVfalNw
+
+
+
