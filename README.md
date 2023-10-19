@@ -66,7 +66,7 @@ This edge case test shows another "what if" scenario. It simulates that there is
 
 The idea is to see how well the controllers and vehicle handle and recover from this apparent malfunction, planned or not.
 
-This test run initiates a manual override to the incoming waypoint stream being received from the local planner. The runtime displays, both panel readouts and realtime graphic displays show the effect of a abrupt unplanned sequence of stop, reverse, stop and forward again, while attempting to following the path plan as usual with the controllers still receiving and trying to respond to the nominal reference trajectory signals.
+This test run initiates a manual override to the incoming waypoint stream being received from the local planner. The runtime displays, both panel readouts and realtime graphic displays show the effect of an abrupt unplanned sequence of stop, reverse, stop and forward again, while attempting to following the path plan as usual with the controllers still receiving and trying to respond to the nominal reference trajectory signals.
 
 
 See the video here: https://www.youtube.com/watch?v=pFygqVfalNw
