@@ -67,9 +67,8 @@ Graphics of the dashboard displays are also saved.
 ![trajectory](runtime_output/v0.45/trajectory.png) 
 
 
-Full length video of the racetrack run with side panel runtime readouts is here:
+Full length video of racetrack run is here... https://www.youtube.com/watch?v=4t0qOREr42g&t=4s
 
-https://www.youtube.com/watch?v=4t0qOREr42g&t=4s
 
 ### Malfunction Test - Unplanned Reversed Motion
 
