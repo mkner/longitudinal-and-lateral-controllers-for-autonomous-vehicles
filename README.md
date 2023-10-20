@@ -37,7 +37,7 @@
 
 * If a particular runtime display panel type is not set in options config then defaults are used
 
-### Videos are finally being released!
+### Videos are released!
 
 Full length video of the racetrack run with side panel runtime readouts is here:
 
