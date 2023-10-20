@@ -4,7 +4,7 @@
 ### Features PID and enhanced Stanley controllers
 
 
-- Original project redeveloped into a modularized and enhanced simulation environment
+- Original UoT project redeveloped into a modularized and enhanced simulation environment
   
 - Includes additions for detailed readouts of runtime performance metrics and feedback measurements used by the controllers
   
