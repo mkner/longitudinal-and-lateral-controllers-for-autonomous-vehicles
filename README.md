@@ -39,7 +39,7 @@
 
 ### Videos are released!
 
-Full length video of the racetrack run with side panel runtime readouts is here:
+Full length video of the racetrack run with side panel runtime readouts
 
 https://www.youtube.com/watch?v=4t0qOREr42g&t=4s
 
@@ -47,6 +47,9 @@ Reverse drive controller test
 
 https://www.youtube.com/watch?v=pFygqVfalNw
 
+Stuck throttle at 90% over test!
+
+https://www.youtube.com/watch?v=bbDEMzL18cg
 
 ### About...
 Final project for Course 1 in University Of Toronto Self-Driving Car Specialization . The longitudinal controller was a PID and the lateral controller was based on the Stanford Stanley controller design with  modifications to improve performance based on field testing results from the simulator. The controller uses both runtime metrics and historical averages over the run of the track to dynamically adjust. The result is an average crosstrack error of only 0.07 meters  (7 cm) for the entire run. The original project was redeveloped into more modularized and enhanced simulation environment. Includes additions for detailed  readouts (on the right panel) of runtime performance metrics and feedback measurements used by the controllers. Extensions were also implemented for enhanced graphical display panels of runtime metrics for a customizable dashboard.
