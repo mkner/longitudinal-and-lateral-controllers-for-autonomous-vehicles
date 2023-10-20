@@ -87,7 +87,7 @@ These are the same controllers used in the normal run (see    • Autonomous Veh
 
 Could a human driver have done any better considering the type of severe actuator failure that occurred in a fly-by-wire vehicle?
 
+See the video at https://www.youtube.com/watch?v=bbDEMzL18cg
 
-See
 
 
