@@ -40,9 +40,7 @@
 
 ### Videos are released!
 
-Full length video of the racetrack run with side panel runtime readouts
-
-https://www.youtube.com/watch?v=4t0qOREr42g&t=4s
+Full length video of the racetrack run with runtime readouts - https://www.youtube.com/watch?v=4t0qOREr42g&t=4s
 
 Reverse drive controller test - https://www.youtube.com/watch?v=pFygqVfalNw
 
