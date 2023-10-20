@@ -75,5 +75,19 @@ This test run initiates a manual override to the incoming waypoint stream being 
 
 See the video here: https://www.youtube.com/watch?v=pFygqVfalNw
 
+### Stuck At 90% Over-Throttle Test!
+
+This edge case test simulates that there is either an electro-mechanical, electronic or unknown system error that causes a malfunction in the actuators. The idea is to see how well the controllers and vehicle handle and recover from a serious system failure.
+
+The test run simulates a throttle that is stuck at 90% over the input signal from the nominal path plan. 
+
+Vehicle motion, panel readouts and realtime graphic displays show the incredible response from the controllers to attempt to continuously and dynamically stabilize the vehicle and get it back on the correct path.
+
+These are the same controllers used in the normal run (see    • Autonomous Vehicle Racetrack Run - PI...  . They were not modified for this particular test! Shows the inherent robustness of the design.
+
+Could a human driver have done any better considering the type of severe actuator failure that occurred in a fly-by-wire vehicle?
+
+
+See
 
 
