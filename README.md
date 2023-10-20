@@ -2,11 +2,15 @@
 ## Longitudinal and lateral controllers for autonomous vehicles
 
 ### Features PID and enhanced Stanley controllers
-#### Runs on the CARLA simulator
 
-- Original project was redeveloped into more modularized and enhanced simulation environment
+
+- Original project redeveloped into a modularized and enhanced simulation environment
+  
 - Includes additions for detailed readouts of runtime performance metrics and feedback measurements used by the controllers
+  
 - Enhanced graphical display panels of runtime metrics using a customizable dashboard
+  
+- Runs on the CARLA simulator
 
 ![run pov 30](demo/normrunpov30.gif)
 
