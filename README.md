@@ -47,6 +47,8 @@ The readouts include: runtime (MM:SS), position (x,y), orientation (yaw), speed 
 
 One quick check for accuracy is to compare realtime speed (kmph) in from the built-in simulator heads-up display to the right panel readout for speed (kmph) based on runtime feedback from the simulator itself. The panel also calculates the speed in mph and mps (meters per second).
 
+Detailed runtime results are also dumped to data files at the end of the run for further analysis
+
 
 ![vtrack](runtime_output/v0.45/velocity_tracking.png) 
 ![cte](runtime_output/v0.45/cte.png) ![cteavg](runtime_output/v0.45/cte_avg.png)
