@@ -6,11 +6,11 @@
 
 - Original UoT project redeveloped into a modularized and enhanced simulation environment
   
-- Includes additions for detailed readouts of runtime performance metrics and feedback measurements used by the controllers
+- Detailed realtime readouts of runtime performance metrics and feedback measurements used by the controllers
   
 - Enhanced graphical display panels of runtime metrics using a customizable dashboard
 
-- Detailed runtime data saved for further analysis
+- Complete runtime data saved for further analysis
   
 - Runs on the CARLA simulator
 
