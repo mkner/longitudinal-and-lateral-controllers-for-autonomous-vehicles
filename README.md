@@ -80,7 +80,7 @@ This edge case test simulates that there is either an electro-mechanical, electr
 The test run initiates a manual override to the incoming waypoint stream being received from the local planner. The runtime displays, both panel readouts and realtime graphic displays show the effect of an abrupt unplanned sequence of stop, reverse, stop and forward again, while attempting to following the path plan as usual with the controllers still receiving and trying to respond to the nominal reference trajectory signals.
 
 
-See the video here: https://www.youtube.com/watch?v=pFygqVfalNw
+See the video... https://www.youtube.com/watch?v=pFygqVfalNw
 
 ### Stuck At 90% Over-Throttle Test!
 
