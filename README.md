@@ -1,7 +1,7 @@
 
 ## Longitudinal and lateral controllers for autonomous vehicles
 
-|
+###
 
 - Original UoT project redeveloped into a modularized and enhanced simulation environment
 
