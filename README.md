@@ -90,7 +90,7 @@ This edge case test simulates that there is either an electro-mechanical, electr
 
 The test run simulates a throttle that is stuck at 90% over the input signal from the nominal path plan. 
 
-Vehicle motion, panel readouts and realtime graphic displays show the incredible response from the controllers to attempt to continuously and dynamically stabilize the vehicle and get it back on the correct path.
+Vehicle motion, panel readouts and realtime graphic displays show the incredible response from the controllers to attempt to continuously and dynamically stabilize the vehicle and get it back on the correct path. Holding up under these conditions shows the controller design to be extremely robust.
 
 These are the same controllers used in the normal run (see    • Autonomous Vehicle Racetrack Run - PI...  . They were not modified for this particular test! Shows the inherent robustness of the design.
 
