@@ -60,6 +60,11 @@ Detailed runtime results are dumped to data files at the end of the run for furt
 ![vtrack](runtime_output/v0.45/velocity_tracking.png) 
 ![cte](runtime_output/v0.45/cte.png) ![cteavg](runtime_output/v0.45/cte_avg.png)
 
+![tbrake](runtime_output/v0.45/throttle_brake.png)
+![steer](runtime_output/v0.45/steering.png)
+![v](runtime_output/v0.45/velocity.png)
+![vavg](runtime_output/v0.45/velocity_avg.png)
+
 ![trajectory](runtime_output/v0.45/trajectory.png) 
 
 
