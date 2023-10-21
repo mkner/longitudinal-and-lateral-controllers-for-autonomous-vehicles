@@ -57,7 +57,7 @@ One quick check for accuracy is to compare realtime speed (kmph) in from the bui
 
 Detailed runtime results are dumped to data files at the end of the run for further analysis and graphics of the dashboard displays are saved.
 
-Example individual runtime control displays for a normal ractrack run
+Example individual runtime control displays after completion of a normal ractrack run
 
 ![vtrack](runtime_output/v0.45/velocity_tracking.png) 
 ![cte](runtime_output/v0.45/cte.png) ![cteavg](runtime_output/v0.45/cte_avg.png)
