@@ -79,7 +79,7 @@ In this demo, the car is using a longitudinal PID  controller and an enhanced St
 
 This edge case test simulates that there is either an electro-mechanical, electronic or unknown system error that causes a malfunction in the actuators or there is an emergency override to the planned path with the same result. The idea is to see how well the controllers and vehicle handle and recover from this apparent malfunction, planned or not.
 
-The test run initiates a manual override to the incoming waypoint stream being received from the local planner. The runtime displays, both panel readouts and realtime graphic displays show the effect of an abrupt unplanned sequence of stop, reverse, stop and forward again, while attempting to following the path plan as usual with the controllers still receiving and trying to respond to the nominal reference trajectory signals.
+The test run initiates a manual override to the incoming waypoint stream being received from the local planner. The runtime displays, both panel readouts and realtime graphic displays show the effect of an abrupt unplanned sequence of stop, reverse, stop and forward again, while still attempting to following the path plan as usual with the controllers receiving and trying to respond to the nominal reference trajectory signals.
 
 
 See the video... https://www.youtube.com/watch?v=pFygqVfalNw
